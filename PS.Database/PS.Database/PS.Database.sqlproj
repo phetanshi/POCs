@@ -70,5 +70,6 @@
     <Build Include="dbo\Tables\TestTable.sql" />
     <Build Include="dbo\Functions\GetSum.sql" />
     <Build Include="dbo\Stored Procedures\uspGetEmployees.sql" />
+    <Build Include="dbo\Functions\GetMultip.sql" />
   </ItemGroup>
 </Project>

@@ -1,9 +1,9 @@
-﻿CREATE FUNCTION dbo.GetSum
+﻿CREATE FUNCTION [dbo].[GetSum]
 (
 @a INT
 ,@b INT
 )
 RETURNS INT AS
 BEGIN
-	RETURN @a + @b
+	RETURN @a + @b + 0
 END
