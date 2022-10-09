@@ -67,9 +67,6 @@
     <Build Include="dbo\Tables\tblTags.sql" />
     <Build Include="dbo\Tables\tblEmployees.sql" />
     <Build Include="dbo\Tables\tblEmployeesTags.sql" />
-    <Build Include="dbo\Tables\TestTable.sql" />
-    <Build Include="dbo\Functions\GetSum.sql" />
-    <Build Include="dbo\Stored Procedures\uspGetEmployees.sql" />
-    <Build Include="dbo\Functions\GetMultip.sql" />
+    <Build Include="dbo\Stored Procedures\uspGetEmployeeById.sql" />
   </ItemGroup>
 </Project>

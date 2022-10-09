@@ -1,9 +1,0 @@
-﻿CREATE FUNCTION dbo.GetMultip
-(
-@a INT
-,@b INT
-)
-RETURNS INT AS
-BEGIN
-	RETURN @a * @b
-END
