@@ -69,8 +69,16 @@
     <Build Include="dbo\Tables\tblEmployees.sql" />
     <Build Include="dbo\Tables\tblEmployeesTags.sql" />
     <Build Include="dbo\Stored Procedures\uspGetEmployeeById.sql" />
+    <Build Include="dbo\Tables\tblDepartments.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="CompareSchemaFiles\Db_to_code.scmp" />
+    <None Include="PS.Database.publish.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Script.PostDeployment.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PreDeploy Include="Script.PreDeployment.sql" />
   </ItemGroup>
 </Project>
