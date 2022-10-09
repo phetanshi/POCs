@@ -62,11 +62,15 @@
     <Folder Include="dbo\Tables\" />
     <Folder Include="dbo\Functions\" />
     <Folder Include="dbo\Stored Procedures\" />
+    <Folder Include="CompareSchemaFiles" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\tblTags.sql" />
     <Build Include="dbo\Tables\tblEmployees.sql" />
     <Build Include="dbo\Tables\tblEmployeesTags.sql" />
     <Build Include="dbo\Stored Procedures\uspGetEmployeeById.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CompareSchemaFiles\Db_to_code.scmp" />
   </ItemGroup>
 </Project>
