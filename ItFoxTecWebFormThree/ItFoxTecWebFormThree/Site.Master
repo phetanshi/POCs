@@ -14,7 +14,31 @@
 
     <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-
+    <script type="text/javascript">
+        function SessionExpireAlert(timeout) {
+            var seconds = timeout / 1000;
+            document.getElementById("secondsOnScreen").innerHTML = seconds;
+            document.getElementById("seconds").innerHTML = seconds;
+            document.getElementById("<%=pnlPopup.ClientID%>").hidden = true;
+            setInterval(function () {
+                seconds--;
+                document.getElementById("seconds").innerHTML = seconds;
+                document.getElementById("secondsOnScreen").innerHTML = seconds;
+            }, 1000);
+            setTimeout(function () {
+                //Show Popup before 20 seconds of timeout.
+                document.getElementById("<%=pnlPopup.ClientID%>").hidden = false;
+            }, timeout - 10 * 1000);
+            setTimeout(function () {
+                window.location.href = "/Auth/Logout";
+            }, timeout);
+            return false;
+        };
+        function ResetSession() {
+            //Redirect to refresh Session.
+            window.location.href = "/Default.aspx";
+        }
+    </script>
 </head>
 <body>
     <form runat="server">
@@ -56,7 +80,7 @@
                     </ul>
 
                     <ul class="nav navbar-nav  navbar-right">
-                        
+
                         <% if (!Request.IsAuthenticated)
                             { %>
                         <li><a runat="server" href="~/Auth/Login">Login</a></li>
@@ -75,6 +99,24 @@
             </div>
         </div>
         <div class="container body-content">
+            <h3>Session Timeout :: <span id="secondsOnScreen"></span>seconds.</h3>
+
+            <asp:Panel ID="pnlPopup" runat="server" CssClass="modalPopup" Style="text-align: center" BorderColor="#cee2e5" BorderStyle="Solid" BackColor="white" class="header">
+                <h4 style="color: white"><b>Session Expiry Alert</b> </h4>
+
+                <asp:Label ID="Label1" runat="server" BackColor="#cee2e5" Font-Bold="True" Text="Session Expiry Alert" Font-Size="Large" ForeColor="DarkBlue" Style="margin-top: 0px" Width="363px" Visible="true"></asp:Label>
+                <br />
+                Your Session will expire in <span id="seconds"></span> seconds.
+            Do you want to continue?
+            <div class="footer">
+                <asp:Button ID="btnYes" runat="server" Text="Yes" CssClass="yes" />
+                <asp:Button ID="btnNo" runat="server" Text="No" CssClass="no" />
+            </div>
+                <br />
+            </asp:Panel>
+
+
+
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
             <hr />

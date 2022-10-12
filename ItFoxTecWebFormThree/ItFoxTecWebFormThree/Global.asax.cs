@@ -7,6 +7,7 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using System.Web.Security;
 using System.Web.SessionState;
+using System.Configuration;
 
 namespace ItFoxTecWebFormThree
 {
@@ -19,13 +20,14 @@ namespace ItFoxTecWebFormThree
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
-
-        //void Session_Start(object sender, EventArgs e)
-        //{
-        //    // Code that runs when a new session is started
-
-        //    Response.Redirect("~/Default.aspx");
-
-        //}
+        void Application_BeginRequest(object sender, EventArgs e)
+        {
+            var app = (HttpApplication)sender;
+            if (app.Context.Request.Url.LocalPath.EndsWith("/"))
+            {
+                string defaultPage = ConfigurationManager.AppSettings["DefaultPage"];
+                app.Context.RewritePath(string.Concat(app.Context.Request.Url.LocalPath, defaultPage));
+            }
+        }
     }
 }
