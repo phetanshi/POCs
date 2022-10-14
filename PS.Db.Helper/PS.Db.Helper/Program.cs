@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PS.Db.Helper.Database;
-using System.Security.Authentication.ExtendedProtection;
+//using System.Security.Authentication.ExtendedProtection;
 
 namespace PS.Db.Helper
 {

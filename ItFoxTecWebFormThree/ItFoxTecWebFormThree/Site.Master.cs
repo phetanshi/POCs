@@ -19,10 +19,12 @@ namespace ItFoxTecWebFormThree
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
 
             Session["Reset"] = true;
-            Configuration config = WebConfigurationManager.OpenWebConfiguration("~/Web.Config");
-            SessionStateSection section = (SessionStateSection)config.GetSection("system.web/sessionState");
+            //Configuration config = WebConfigurationManager.OpenWebConfiguration("~/Web.Config");
+            //SessionStateSection section = (SessionStateSection)config.GetSection("system.web/sessionState");
+            SessionStateSection section = (SessionStateSection)ConfigurationManager.GetSection("system.web/sessionState");
             int timeout = (int)section.Timeout.TotalMinutes * 1000; //I change the timeout value to 25 seconds
             Page.ClientScript.RegisterStartupScript(this.GetType(), "SessionAlert", "SessionExpireAlert(" + timeout + ");", true);
+
 
             if (!IsPostBack)
             {

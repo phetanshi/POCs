@@ -11,9 +11,10 @@
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
-
     <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+
     <script type="text/javascript">
         function SessionExpireAlert(timeout) {
             var seconds = timeout / 1000;
@@ -38,9 +39,21 @@
             //Redirect to refresh Session.
             window.location.href = "/Default.aspx";
         }
+
+        $(function () {
+            var dia = $("#dialog").dialog();
+            dia.hide();
+
+            $("#lnkDialog").click(function () {
+                dia.Show();
+            });
+        });
     </script>
 </head>
 <body>
+    <div id="dialog">
+        <span>This is test message</span>
+    </div>
     <form runat="server">
         <asp:ScriptManager runat="server">
             <Scripts>
@@ -90,7 +103,9 @@
                             {  %>
                         <li class="navbar-text">Hello, <span runat="server" id="LoginUserName"></span>!</li>
                         <li><a runat="server" href="~/Auth/Logout">Logout</a></li>
+
                         <%} %>
+                        <li><a id="lnkDialog">Dialog</a></li>
                     </ul>
                 </div>
                 <%-- <div class="pull-right nav navbar-nav d-flex">
@@ -106,7 +121,7 @@
 
                 <asp:Label ID="Label1" runat="server" BackColor="#cee2e5" Font-Bold="True" Text="Session Expiry Alert" Font-Size="Large" ForeColor="DarkBlue" Style="margin-top: 0px" Width="363px" Visible="true"></asp:Label>
                 <br />
-                Your Session will expire in <span id="seconds"></span> seconds.
+                Your Session will expire in <span id="seconds"></span>seconds.
             Do you want to continue?
             <div class="footer">
                 <asp:Button ID="btnYes" runat="server" Text="Yes" CssClass="yes" />
