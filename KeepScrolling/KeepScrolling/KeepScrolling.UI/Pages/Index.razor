@@ -18,7 +18,8 @@
 @code {
     async Task<IEnumerable<int>> GetItems(InfiniteScrollingItemsProviderRequest request)
     {
-        await Task.Delay(500);
-        return Enumerable.Range(request.StartIndex, 10);
+        await Task.Delay(1000);
+        var items = Enumerable.Range(request.StartIndex, 3);
+        return items;
     }
 }
